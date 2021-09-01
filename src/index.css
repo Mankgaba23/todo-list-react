@@ -4,8 +4,8 @@ h1{
 input{
   font-size: 20px;
   padding: 4px 8px;
-  flex-grow: 2;
-  margin-right: 16px;
+  flex-grow: 1;
+  margin: 10px; 
 }
    
 function{
@@ -14,17 +14,41 @@ function{
   
 form{
 display:flex;
+flex-direction: column;
 }
   
 button{
  font-size: 18;
-  background-color:green;
+  background-color:darkblue;
   padding: 8px 16px;
   border: none;
-  color: blue;
+  color:whitesmoke;
+}
+.complete{
+  font-size: 18;
+  background-color:teal;
+  padding: 8px 16px;
+  border: none;
+  color:white;
 }
 .todo{
-    width: 500px;
-    margin: 60px auto;
+  width: 500px;
+  margin: 60px auto;
+}
+.list-style{
+  display: flex;
+  flex-direction: column;
+}
+.button-style{
+  display: flex;
+  justify-content:space-between ;
+  margin: 5px;
+}
+.todo-style{
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  width: auto;
+  flex-grow: 1;
 }
   

@@ -3,34 +3,41 @@ import './App.css';
 import React from 'react';
 
 function App() {
-  const [todo, setTodo] = React.useState("")
+  const [todo, setTodo] = React.useState({
+    taskName: " ",
+    discription: "",
+    quantity: "",
+
+  })
   const [todoList, setList] = React.useState([])
 
   function onsubmitHandler(e) {
-  e.preventDefault()
+    e.preventDefault()
     const AddTodo = {
       id: new Date().getTime(),
-      todoName: todo,
+      todoName:todo.taskName,
+      description:todo.description,
+      dueDate:todo.dueDate,
       complete: false
     }
     setList([...todoList].concat(AddTodo))
     setTodo("")
-    console.log(todoList); 
+    console.log(todoList);
   }
-  function deleteTodo(id){
-    let updatedList=[...todoList].filter((todo)=>todo.id !==id)
+  function deleteTodo(id) {
+    let updatedList = [...todoList].filter((todo) => todo.id !== id)
     setList(updatedList)
 
   }
 
-  function completeTodo(id){ 
-    let updatedList=[...todoList].map((todo)=>{
-      if (todo.id===id){
-        todo.complete=!todo.complete
+  function completeTodo(id) {
+    let updatedList = [...todoList].map((todo) => {
+      if (todo.id === id) {
+        todo.complete = !todo.complete
       }
       return todo
     })
-    setList(updatedList )
+    setList(updatedList)
     console.log(todoList);
 
 
@@ -42,23 +49,56 @@ function App() {
       <form onSubmit={onsubmitHandler}>
         <input
           type="text"
-          value={todo}
-          onChange={(e)=>setTodo(e.target.value)}/>
+          name
+          value={todo.taskName}
+          Name="taskName"
+          placeholder="TaskName"
+          required
+          onChange={(e) => setTodo({...todo,taskName: e.target.value})}
+        />
+         <input
+          type="text"
+          value={todo.description}
+          name="description"
+          placeholder="Description"
+          required
+          onChange={(e) => setTodo({...todo, description: e.target.value})}
+        />
+         <input
+          type="date"
+          name="Due Date"
+          value={todo.dueDate}
+          placeholder="dueDate"
+          required
+          onChange={(e) => setTodo({...todo, dueDate: e.target.value})}
+        /> 
 
         <button> Add</button>
       </form>
 
-      {todoList.map((data) => {
-        <div key={data.id}>
-          <li>
-            {data.todoName}
-            <button onClick={()=>deleteTodo(data.id)}>Delete</button>
-            <button onClick={()=>completeTodo(data.id)}>Complete</button>
+      {todoList.map((data) => (
+        <div key={data.id} className="list-style">
 
 
-          </li>
+          <div className="button-style">
+
+            <div className="todo-style">
+              {data.todoName}
+              {data.description}
+              {data.dueDate}
+            </div>
+
+            <button onClick={() => deleteTodo(data.id)}>Delete</button>
+            {data.complete === true
+              ? <button className="complete" onClick={() => completeTodo(data.id)}>completed</button>
+              : <button onClick={() => completeTodo(data.id)}>Complete</button>
+            }
+
+
+          </div>
+
         </div>
-      })}
+      ))}
 
     </div>
   );
