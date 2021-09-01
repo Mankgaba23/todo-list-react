@@ -4,9 +4,9 @@ import React from 'react';
 
 function App() {
   const [todo, setTodo] = React.useState({
-    taskName: " ",
-    discription: "",
-    quantity: "",
+    taskName: "",
+    description: "",
+    dueDate: "",
 
   })
   const [todoList, setList] = React.useState([])
@@ -15,7 +15,7 @@ function App() {
     e.preventDefault()
     const AddTodo = {
       id: new Date().getTime(),
-      todoName:todo.taskName,
+      taskName:todo.taskName,
       description:todo.description,
       dueDate:todo.dueDate,
       complete: false
@@ -52,7 +52,7 @@ function App() {
           name
           value={todo.taskName}
           Name="taskName"
-          placeholder="TaskName"
+          placeholder="Task Name"
           required
           onChange={(e) => setTodo({...todo,taskName: e.target.value})}
         />
