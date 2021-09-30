@@ -5,4 +5,4 @@ This is an ReactJS app i have developed
 2. Mark as completed
 3. Delete a task
 
-Project url:
+Project url:https://todo-list-e7b94.web.app
